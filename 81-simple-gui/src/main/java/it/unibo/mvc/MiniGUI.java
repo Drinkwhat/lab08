@@ -2,12 +2,12 @@ package it.unibo.mvc;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
 
 /**
@@ -29,21 +29,53 @@ public class MiniGUI {
      * Creates a new {@link MiniGUI}.
      */
     public MiniGUI() {
-        final JPanel canvas = new JPanel();
-        canvas.setLayout(new BorderLayout());
-        final JButton write = new JButton("Print a random number on standard output");
-        canvas.add(write, BorderLayout.CENTER);
-        frame.setContentPane(canvas);
+        // final JPanel canvas = new JPanel();
+        // canvas.setLayout(new BorderLayout());
+        // final JButton write = new JButton("Print a random number on standard output");
+        // canvas.add(write, BorderLayout.CENTER);
+        // frame.setContentPane(canvas);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         /*
          * Handlers
          */
-        write.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(final ActionEvent e) {
-                System.out.println(randomGenerator.nextInt());
+        // write.addActionListener(new ActionListener() {
+        //     @Override
+        //     public void actionPerformed(final ActionEvent e) {
+        //         System.out.println(randomGenerator.nextInt());
+        //     }
+        // });
+
+        final JPanel secondJPanel = new JPanel();
+        secondJPanel.setLayout(new BorderLayout());
+
+        final JButton randomButton = new JButton("Random generator");
+        
+        secondJPanel.add(
+            randomButton, 
+            BorderLayout.CENTER
+        );
+
+        final JPanel bottomPanel = new JPanel(new BorderLayout());
+        bottomPanel.add(new JLabel("result:"), BorderLayout.WEST);
+        final JTextField resultField = new JTextField();
+        bottomPanel.add(resultField, BorderLayout.CENTER);
+
+        secondJPanel.add(
+            bottomPanel,
+            BorderLayout.SOUTH
+        );
+        randomButton.addActionListener(e -> {
+                final int result = randomGenerator.nextInt();
+
+                resultField.setText(String.valueOf(result));
+                System.out.println(result);
             }
-        });
+        );
+
+        frame.setContentPane(secondJPanel);
+
+
+
     }
 
     private void display() {
