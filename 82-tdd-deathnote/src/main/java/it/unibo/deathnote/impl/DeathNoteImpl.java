@@ -8,7 +8,6 @@ import it.unibo.deathnote.api.DeathNote;
 /*
  * Implementazione dell'interfaccia di Deathnote
  */
-
 public class DeathNoteImpl implements DeathNote {
 
     public static final String DEFAULT_DEATH_CAUSE = "Heart attack";
