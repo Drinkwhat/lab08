@@ -15,7 +15,7 @@ import it.unibo.deathnote.impl.DeathNoteImpl;
 
 class TestDeathNote {
     private final int NEGATIVE_RULE = -1;
-    private final int UPPON_LIMIT_RULE = 10000;
+    private final int INVALID_RULE_ABOVE_LIMIT = 10000;
 
     private final String NAME_1 = "Mario Rossi";
     private final String NAME_2 = "Pippo Baudo";
@@ -58,7 +58,7 @@ class TestDeathNote {
         // Test upper limit rule - should throw IllegalArgumentException
         exception = assertThrows(
             IllegalArgumentException.class, 
-            () -> deathNote.getRule(UPPON_LIMIT_RULE)
+            () -> deathNote.getRule(INVALID_RULE_ABOVE_LIMIT)
         );
         assertNotNull(exception.getMessage());
         assertFalse(exception.getMessage().isEmpty());
