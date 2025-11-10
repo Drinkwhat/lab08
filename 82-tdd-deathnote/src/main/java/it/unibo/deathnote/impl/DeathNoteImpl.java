@@ -5,26 +5,27 @@ import java.util.Map;
 
 import it.unibo.deathnote.api.DeathNote;
 
+/*
+ * Implementazione dell'interfaccia di Deathnote
+ */
+
 public class DeathNoteImpl implements DeathNote {
+
     public static final String DEFAULT_DEATH_CAUSE = "Heart attack";
     public static final int DELTA_TIME_DEATH_CAUSE = 40;
     public static final int DELTA_TIME_DEATH_DETAILS = 6040;
-
-
 
     private class Person {
         private String deathCause;
         private String deathDetails;
         private final long nameTimeStamp;
         private long causeTimestamp;
-        private long detailsTimestamp;
 
         private Person() {
             deathCause = DEFAULT_DEATH_CAUSE;
             deathDetails = "";
             nameTimeStamp = System.currentTimeMillis();
             this.causeTimestamp = System.currentTimeMillis();
-            this.detailsTimestamp = 0;
         }
 
         private String getDeathCause() {
@@ -42,7 +43,6 @@ public class DeathNoteImpl implements DeathNote {
 
         private void setDeathDetails(final String deathDetail) {
             this.deathDetails = deathDetail;
-            this.detailsTimestamp = System.currentTimeMillis();
         }
 
         private long getNameTimestamp() {
