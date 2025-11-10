@@ -57,7 +57,6 @@ public class DeathNoteImpl implements DeathNote {
     //? ha senso fare una Map o basta solo salvare l'ultimo e la lista dei nomi inseriti?
 
     private final Map<String, Person> deathNote = new LinkedHashMap<>();
-    // Keep a direct reference to the last written name to avoid O(n) scans
     private String lastWrittenName;
 
     @Override
