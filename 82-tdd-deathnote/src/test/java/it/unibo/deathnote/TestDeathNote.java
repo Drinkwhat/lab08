@@ -14,16 +14,16 @@ import it.unibo.deathnote.api.DeathNote;
 import it.unibo.deathnote.impl.DeathNoteImpl;
 
 class TestDeathNote {
-    private final int NEGATIVE_RULE = -1;
-    private final int INVALID_RULE_ABOVE_LIMIT = 10000;
+    private static final int NEGATIVE_RULE = -1;
+    private static final int INVALID_RULE_ABOVE_LIMIT = 10000;
 
-    private final String NAME_1 = "Mario Rossi";
-    private final String NAME_2 = "Pippo Baudo";
-    private final String DEATH_CAUSE_1= "karting accident";
-    private final String DEATH_CAUSE_2= "Annegato in una vasca di coca-cola";
+    private static final String NAME_1 = "Mario Rossi";
+    private static final String NAME_2 = "Pippo Baudo";
+    private static final String DEATH_CAUSE_1= "karting accident";
+    private static final String DEATH_CAUSE_2= "Annegato in una vasca di coca-cola";
 
-    private final String DEATH_DETAIL_1 = "ran for too long";
-    private final String DEATH_DETAIL_2 = "Troppa programmazione ad oggetti";
+    private static final String DEATH_DETAIL_1 = "ran for too long";
+    private static final String DEATH_DETAIL_2 = "Troppa programmazione ad oggetti";
 
 
 
@@ -115,6 +115,4 @@ class TestDeathNote {
         assertFalse(deathNote.writeDetails(DEATH_DETAIL_2));
         assertNotEquals(DEATH_DETAIL_2, deathNote.getDeathDetails(NAME_2));
     }
-
-
 }
