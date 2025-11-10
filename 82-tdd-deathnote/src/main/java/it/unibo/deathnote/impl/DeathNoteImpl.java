@@ -14,14 +14,14 @@ public class DeathNoteImpl implements DeathNote {
 
     private class Person {
         private String deathCause;
-        private String deathDetail;
+        private String deathDetails;
         private final long nameTimeStamp;
         private long causeTimestamp;
         private long detailsTimestamp;
 
         private Person() {
             deathCause = DEFAULT_DEATH_CAUSE;
-            deathDetail = "";
+            deathDetails = "";
             nameTimeStamp = System.currentTimeMillis();
             this.causeTimestamp = System.currentTimeMillis();
             this.detailsTimestamp = 0;
@@ -36,12 +36,12 @@ public class DeathNoteImpl implements DeathNote {
             this.causeTimestamp = System.currentTimeMillis();
         }
 
-        private String getDeathDeatail() {
-            return deathDetail;
+        private String getDeathDetails() {
+            return deathDetails;
         }
 
-        private void setDeathDetail(final String deathDetail) {
-            this.deathDetail = deathDetail;
+        private void setDeathDetails(final String deathDetail) {
+            this.deathDetails = deathDetail;
             this.detailsTimestamp = System.currentTimeMillis();
         }
 
@@ -53,8 +53,6 @@ public class DeathNoteImpl implements DeathNote {
             return causeTimestamp;
         }
     }
-
-    //? ha senso fare una Map o basta solo salvare l'ultimo e la lista dei nomi inseriti?
 
     private final Map<String, Person> deathNote = new LinkedHashMap<>();
     private String lastWrittenName;
@@ -109,10 +107,10 @@ public class DeathNoteImpl implements DeathNote {
 
     @Override
     public String getDeathDetails(String name) {
-    if (!deathNote.containsKey(name)) {
+        if (!deathNote.containsKey(name)) {
             throw new IllegalArgumentException(name + "is not in deathnote");
         }
-        return deathNote.get(name).getDeathDeatail();
+        return deathNote.get(name).getDeathDetails();
     }
 
     @Override
@@ -130,12 +128,10 @@ public class DeathNoteImpl implements DeathNote {
             System.out.println(p.getCauseTimestamp());
             return false;
         }
-        if (p.getDeathDeatail() == null) {
-            System.out.println("pluto");
+        if (p.getDeathDetails() == null) {
             return false;
         }
-        System.out.println("paperino");
-        p.setDeathDetail(details);
+        p.setDeathDetails(details);
         return true;
     }
     @Override
