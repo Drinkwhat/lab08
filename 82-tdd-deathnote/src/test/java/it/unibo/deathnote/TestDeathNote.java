@@ -15,29 +15,28 @@ import it.unibo.deathnote.impl.DeathNoteImpl;
 
 class TestDeathNote {
     private static final int NEGATIVE_RULE = -1;
-    private static final int INVALID_RULE_ABOVE_LIMIT = 10000;
+    private static final int INVALID_RULE_ABOVE_LIMIT = 10_000;
 
     private static final String NAME_1 = "Mario Rossi";
     private static final String NAME_2 = "Pippo Baudo";
-    private static final String DEATH_CAUSE_1= "karting accident";
-    private static final String DEATH_CAUSE_2= "Annegato in una vasca di coca-cola";
+    private static final String DEATH_CAUSE_1 = "karting accident";
+    private static final String DEATH_CAUSE_2 = "Annegato in una vasca di coca-cola";
 
     private static final String DEATH_DETAIL_1 = "ran for too long";
     private static final String DEATH_DETAIL_2 = "Troppa programmazione ad oggetti";
 
+    private static final int SLEEP_TIME_1 = 100;
+    private static final int SLEEP_TIME_2 = 6_100;
 
-
-    
     private DeathNote deathNote;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         deathNote = new DeathNoteImpl();
     }
 
     @Test
-    public void testGetRuleIllegalArguments() {
-        // Test rule 0 - should throw IllegalArgumentException
+    void testGetRuleIllegalArguments() {
         IllegalArgumentException exception = assertThrows(
             IllegalArgumentException.class, 
             () -> deathNote.getRule(0)
@@ -45,8 +44,6 @@ class TestDeathNote {
         assertNotNull(exception.getMessage());
         assertFalse(exception.getMessage().isEmpty());
         assertFalse(exception.getMessage().isBlank());
-        
-        // Test negative rule - should throw IllegalArgumentException
         exception = assertThrows(
             IllegalArgumentException.class, 
             () -> deathNote.getRule(NEGATIVE_RULE)
@@ -54,8 +51,6 @@ class TestDeathNote {
         assertNotNull(exception.getMessage());
         assertFalse(exception.getMessage().isEmpty());
         assertFalse(exception.getMessage().isBlank());
-        
-        // Test upper limit rule - should throw IllegalArgumentException
         exception = assertThrows(
             IllegalArgumentException.class, 
             () -> deathNote.getRule(INVALID_RULE_ABOVE_LIMIT)
@@ -66,7 +61,7 @@ class TestDeathNote {
     }
 
     @Test
-    public void testRulesAreValid() {
+    void testRulesAreValid() {
         for (final String rule : DeathNote.RULES) {
             assertNotNull(rule);
             assertFalse(rule.isBlank());
@@ -74,7 +69,7 @@ class TestDeathNote {
     }
 
     @Test
-    public void testWriteName() {
+    void testWriteName() {
         assertFalse(deathNote.isNameWritten(NAME_1));
         deathNote.writeName(NAME_1);
         assertTrue(deathNote.isNameWritten(NAME_1));
@@ -84,7 +79,7 @@ class TestDeathNote {
     }
 
     @Test
-    public void testWriteDeathCause() throws InterruptedException {
+    void testWriteDeathCause() throws InterruptedException {
         assertThrows(
             IllegalStateException.class, 
             () -> deathNote.writeDeathCause(DEATH_CAUSE_1)
@@ -94,24 +89,23 @@ class TestDeathNote {
         deathNote.writeName(NAME_2);
         assertTrue(deathNote.writeDeathCause(DEATH_CAUSE_1));
         assertEquals(DEATH_CAUSE_1, deathNote.getDeathCause(NAME_2));
-        Thread.sleep(100);
+        Thread.sleep(SLEEP_TIME_1);
         deathNote.writeDeathCause(DEATH_CAUSE_2);
         assertNotEquals(DEATH_CAUSE_2, deathNote.getDeathCause(NAME_2));
     }
 
     @Test
-    public void testWriteDetails() throws InterruptedException {
+    void testWriteDetails() throws InterruptedException {
         assertThrows(
             IllegalStateException.class, 
             () -> deathNote.writeDetails(DEATH_DETAIL_1)
         );
-
         deathNote.writeName(NAME_1);
         assertTrue(deathNote.getDeathDetails(NAME_1).isEmpty());
         assertTrue(deathNote.writeDetails(DEATH_DETAIL_1));
         assertEquals(DEATH_DETAIL_1, deathNote.getDeathDetails(NAME_1));
         deathNote.writeName(NAME_2);
-        Thread.sleep(6100);
+        Thread.sleep(SLEEP_TIME_2);
         assertFalse(deathNote.writeDetails(DEATH_DETAIL_2));
         assertNotEquals(DEATH_DETAIL_2, deathNote.getDeathDetails(NAME_2));
     }
