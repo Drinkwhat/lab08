@@ -111,7 +111,7 @@ class TestDeathNote {
         assertTrue(deathNote.writeDetails(DEATH_DETAIL_1));
         assertEquals(DEATH_DETAIL_1, deathNote.getDeathDetails(NAME_1));
         deathNote.writeName(NAME_2);
-        Thread.sleep(61000);
+        Thread.sleep(6100);
         assertFalse(deathNote.writeDetails(DEATH_DETAIL_2));
         assertNotEquals(DEATH_DETAIL_2, deathNote.getDeathDetails(NAME_2));
     }
