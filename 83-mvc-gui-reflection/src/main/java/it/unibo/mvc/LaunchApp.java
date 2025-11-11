@@ -36,18 +36,13 @@ public final class LaunchApp {
 
         final Class<?> swingViewClass = Class.forName("it.unibo.mvc.view.DrawNumberSwingView");
         final Class<?> stdOutputViewClass = Class.forName("it.unibo.mvc.view.DrawNumberStandardOutputView");
-        
+
         final var swingViewConstructor = swingViewClass.getConstructor();
         final var stdOutputViewConstructor = stdOutputViewClass.getConstructor();
-        
+
         for (int i = 0; i < 3; i++) {
-            final DrawNumberView view = (DrawNumberView) swingViewConstructor.newInstance();
-            app.addView(view);
-        }
-        
-        for (int i = 0; i < 3; i++) {
-            final DrawNumberView view = (DrawNumberView) stdOutputViewConstructor.newInstance();
-            app.addView(view);
+            app.addView((DrawNumberView) swingViewConstructor.newInstance());
+            app.addView((DrawNumberView) stdOutputViewConstructor.newInstance());
         }
     }
 }
