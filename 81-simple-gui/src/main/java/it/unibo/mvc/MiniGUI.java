@@ -23,7 +23,6 @@ public class MiniGUI {
 
     private static final String TITLE = "A very simple GUI application";
     private static final int PROPORTION = 5;
-    private final Random randomGenerator = new Random();
     private final JFrame frame = new JFrame(TITLE);
 
     /**
@@ -33,30 +32,22 @@ public class MiniGUI {
         final JPanel canvas = new JPanel();
         canvas.setLayout(new BorderLayout());
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        final Random randomGenerator = new Random();
         final JPanel topPanel = new JPanel(new BorderLayout());
         topPanel.add(new JLabel("result:"), BorderLayout.WEST);
         final JTextField resultField = new JTextField();
         topPanel.add(resultField, BorderLayout.CENTER);
-        canvas.add(
-            topPanel,
-            BorderLayout.NORTH
-        );
-
+        canvas.add(topPanel,BorderLayout.NORTH);
         final JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
         final JButton randomButton = new JButton("Random generator");
         randomButton.addActionListener(e -> {
             final int result = randomGenerator.nextInt();
-
             resultField.setText(String.valueOf(result));
             System.out.println(result); // NOPMD This println was required by th exercise
         });
-        bottomPanel.add(
-            randomButton
-        );
+        bottomPanel.add(randomButton);
         canvas.add(bottomPanel, BorderLayout.CENTER);
-
         frame.setContentPane(canvas);
     }
 
