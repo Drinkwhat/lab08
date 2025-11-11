@@ -50,7 +50,7 @@ public class MiniGUI {
             final int result = randomGenerator.nextInt();
 
             resultField.setText(String.valueOf(result));
-            System.out.println(result);
+            System.out.println(result); // NOPMD
         });
         bottomPanel.add(
             randomButton
