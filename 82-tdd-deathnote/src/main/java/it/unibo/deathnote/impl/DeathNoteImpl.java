@@ -21,6 +21,8 @@ import it.unibo.deathnote.api.DeathNote;
 public final class DeathNoteImpl implements DeathNote {
 
     public static final String DEFAULT_DEATH_CAUSE = "Heart attack";
+    public static final String DEFAULT_DEATH_DETAILS = "";
+
     public static final int DELTA_TIME_DEATH_CAUSE = 40;
     public static final int DELTA_TIME_DEATH_DETAILS = 6040;
     private static final String ERR_NAME_NULL = "name cannot be null";
@@ -66,7 +68,7 @@ public final class DeathNoteImpl implements DeathNote {
         if (now - p.getNameTimestamp() > DELTA_TIME_DEATH_CAUSE) {
             return false;
         }
-        if (p.getDeathCause() == null) {
+        if (!DEFAULT_DEATH_CAUSE.equals(p.getDeathCause())) {
             return false;
         }
         p.setDeathCause(cause);
@@ -93,7 +95,7 @@ public final class DeathNoteImpl implements DeathNote {
         if (now - p.getCauseTimestamp() > DELTA_TIME_DEATH_DETAILS) {
             return false;
         }
-        if (p.getDeathDetails() == null) {
+        if (!DEFAULT_DEATH_DETAILS.equals(p.getDeathDetails())) {
             return false;
         }
         p.setDeathDetails(details);
@@ -114,9 +116,9 @@ public final class DeathNoteImpl implements DeathNote {
 
         private Person() {
             deathCause = DEFAULT_DEATH_CAUSE;
-            deathDetails = "";
+            deathDetails = DEFAULT_DEATH_DETAILS;
             nameTimeStamp = System.currentTimeMillis();
-            this.causeTimestamp = System.currentTimeMillis();
+            causeTimestamp = System.currentTimeMillis();
         }
 
         private String getDeathCause() {
